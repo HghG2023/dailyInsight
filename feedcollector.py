@@ -3,10 +3,13 @@ import aiohttp
 import feedparser
 from datetime import datetime
 from html import escape
+import requests
 from logger import logger
 from yamlconfig import yamlconfig  # 假设已实现加载 feeds.yaml / config.yaml
 
 class FeedCollector:
+    def __init__(self):
+        self.daily_quote = requests.get("https://v1.hitokoto.cn/").json().get("hitokoto") or None
 
     async def get_entries(self, session, feed_info: dict):
         """异步获取一个 feed 的若干条最新文章"""
@@ -80,6 +83,13 @@ class FeedCollector:
             f"<h2>📅 每日资讯汇总 - {today}</h2>",
             "<hr style='border:none;border-top:2px solid #ddd;'>"
         ]
+        # 💡 每日格言区域（如果提供）
+        if self.daily_quote:
+            html.append(f"<div class='quote'>💭 果哥偷文~ </div>")
+            html.append(f"<div class='quote'>💭 {self.daily_quote}</div>")
+
+        html.append("<hr style='border:none;border-top:2px solid #ddd;'>")
+
 
         for topic, feeds in all_data.items():
             topic_title = topic.replace("_", " ").title()
@@ -113,3 +123,6 @@ class FeedCollector:
 
         html.append("<p style='font-size:0.9em;color:#999;'>Generated automatically by DailyFeedBot</p>")
         return "\n".join(html)
+
+if __name__ == "__main__":
+    print(FeedCollector().daily_quote)

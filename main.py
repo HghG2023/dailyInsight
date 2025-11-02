@@ -4,6 +4,12 @@ from sender import Mail_sender
 from logger import logger, PM
 from yamlconfig import yamlconfig
 
+def save_to_public(html_content):
+    filename = PM.base_path.parent /"PublicEmailsHtml" / f"daily_feed_{PM.today_format()}.html"
+    filename.parent.mkdir(parents=True, exist_ok=True)
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(html_content)
+    logger.info(f"✅ 已保存本地文件：{filename.absolute()}")
 
 async def main():
     collector = FeedCollector()
@@ -27,6 +33,8 @@ async def main():
 
     try:
         await Mail_sender.send_batch(message_list)
+        save_to_public(html_content)
+        # raise Exception("test")
     except Exception as ex:
         filename = PM.path.parent / "emails" / f"daily_feed_{PM.today_format()}.html"
         filename.parent.mkdir(parents=True, exist_ok=True)
@@ -37,3 +45,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+    # save_to_public("test")
