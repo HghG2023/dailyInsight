@@ -32,7 +32,7 @@ async def main():
                     ]
 
     try:
-        # await Mail_sender.send_batch(message_list)
+        await Mail_sender.send_batch(message_list)
         save_to_public(html_content)
         # raise Exception("test")
     except Exception as ex:
