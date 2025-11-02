@@ -2,7 +2,7 @@ import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
 from logger import logger
-
+from yamlconfig import yamlconfig
 # server_info = {
 #     "email": "hg020309@gmail.com",
 #     "password": "arel dreq ecvw bpwq",
@@ -12,12 +12,7 @@ from logger import logger
 
 class Mail:
     def __init__(self):
-        self.server_info = {
-                            "email": "m7xp_9qr2vn8sf3@qq.com",
-                            "password": "nbfbmwcrhxktdeaj",
-                            "server": "smtp.qq.com",
-                            "port": 465
-                            }
+        self.server_info = yamlconfig().config_yaml()["sender"]
 
     def send_mail(self, messageinfo: dict):
 

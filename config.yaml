@@ -1,1 +1,7 @@
 user_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36 Edg/141.0.0.0 version 1.6.28"
+
+sender:
+  email: "m7xp_9qr2vn8sf3@qq.com"
+  password: "nbfbmwcrhxktdeaj"
+  server: "smtp.qq.com"
+  port: 465

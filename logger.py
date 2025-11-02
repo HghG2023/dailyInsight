@@ -4,6 +4,7 @@ from pathlib import Path
 
 class PathManager:
     def __init__(self):
+        self.base_path = Path(__file__).parent
         self.path = Path(__file__).parent / "logs"
         self.path.mkdir(parents=True, exist_ok=True)
 
