@@ -11,14 +11,20 @@ class FeedCollector:
     def __init__(self):
         self.daily_quote = requests.get("https://v1.hitokoto.cn/").json().get("hitokoto") or None
         self.claims = """
-                    <hr style="border:none;border-top:1px solid #ddd;margin-top:20px;margin-bottom:20px;">
-                    <p style="font-size:13px; color:#666; line-height:1.6;">
-                    📎 <b>版权声明与免责声明</b><br>
-                    本邮件内容基于公开的 <a href="https://en.wikipedia.org/wiki/RSS" target="_blank" style="color:#1a73e8;text-decoration:none;">RSS 源</a> 自动生成，仅展示来源网站的标题、摘要与原文链接，用于学习与信息分享。<br>
-                    所有文章及内容版权归原作者及所属媒体所有，若涉及版权问题，请联系以便及时处理。<br>
-                    本邮件不代表任何媒体立场，不承担因内容使用或转载所产生的法律责任。<br>
-                    📬 如果你喜欢这份每日资讯，欢迎转发分享，但请保留完整来源说明。
-                    </p>
+                        <hr style="border:none;border-top:1px solid #ddd;margin-top:20px;margin-bottom:20px;">
+                        
+                        <p style="font-size:13px; color:#666; line-height:1.6;">
+                        📎 <b>版权声明与免责声明 / Copyright & Disclaimer</b><br>
+                        本邮件内容基于公开的 <a href="https://en.wikipedia.org/wiki/RSS" target="_blank" style="color:#1a73e8;text-decoration:none;">RSS 源</a> 自动生成，仅展示来源网站的标题、摘要与原文链接，用于学习与信息分享。<br>
+                        所有文章及内容版权归原作者及所属媒体所有，若涉及版权问题，请联系以便及时处理。<br>
+                        本邮件不代表任何媒体立场，不承担因内容使用或转载所产生的法律责任。<br>
+                        📬 如果你喜欢这份每日资讯，欢迎转发分享，但请保留完整来源说明。<br><br>
+
+                        This email is generated from publicly available <a href="https://en.wikipedia.org/wiki/RSS" target="_blank" style="color:#1a73e8;text-decoration:none;">RSS feeds</a> and only includes titles, summaries, and links to the original articles for educational and informational purposes.<br>
+                        All articles and content are copyrighted by the original authors and their respective media. Please contact us if any copyright concerns arise.<br>
+                        This email does not represent the views of any media outlet and we assume no responsibility for any legal issues arising from the use or redistribution of its content.<br>
+                        📬 Feel free to forward this daily digest, but please retain full source attribution.
+                        </p>
                     """
 
     async def get_entries(self, session, feed_info: dict):
