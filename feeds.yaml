@@ -1,0 +1,20 @@
+feeds:
+  Global-Insight:
+    - https://www.technologyreview.com/feed/
+  Artificial-Intelligence:
+    - https://arxiv.org/rss/cs.LG
+    - https://arxiv.org/rss/cs.AI
+    - https://hnrss.org/frontpage
+  engineering:
+    - https://www.techbriefs.com/tb/topic/mechanical-mechatronics
+
+  cognition:
+    - https://fs.blog/feed/
+    - https://www.themarginalian.org/feed/
+
+  future:
+    - https://futurism.com/feed
+
+  chinese-news:
+    - https://sspai.com/feed
+    - https://www.qbitai.com/feed
