@@ -5,6 +5,7 @@ from datetime import datetime
 from html import escape
 import requests
 from logger import logger
+from timeFormat import format_for_web
 from yamlconfig import yamlconfig  # 假设已实现加载 feeds.yaml / config.yaml
 
 class FeedCollector:
@@ -48,7 +49,7 @@ class FeedCollector:
                     title = str(e.get("title", "(无标题)")).strip()
                     link = e.get("link", "#")
                     date = e.get("published") or e.get("updated") or e.get("pubDate") or "未知日期"
-                    results.append({"title": title, "link": link, "date": date})
+                    results.append({"title": title, "link": link, "date": format_for_web(date)}) # type: ignore
 
                 feed_title = feed.feed.get("title", name) # type: ignore
                 return feed_title, results
