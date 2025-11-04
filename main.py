@@ -16,6 +16,7 @@ async def main():
         local_html = PM.base_path.parent /"PublicEmailsHtml" / f"daily_feed_{PM.today_format()}.html"
         if local_html.exists():
             html_content = local_html.read_text(encoding="utf-8")
+            print("使用本地文件")
         else:
             collector = FeedCollector()
             all_data = await collector.collect_all()
@@ -33,6 +34,7 @@ async def main():
                                 "recipient_email": receiver
                             }
                             for receiver in yamlconfig().config_yaml()["receiver"]["email"]
+                            # for receiver in ["huangguo02@qq.com"]
                         ]
 
         try:
@@ -44,6 +46,7 @@ async def main():
             message_bigerror = "邮件系统故障失败:\n" + str(ex)
             raise Exception(message_bigerror)
     except Exception as e:
+        save_to_public(html_content)
         Mail_beiyong = Mail()
         await Mail_beiyong.send_mail({
                                     "recipient_email": "huangguo02@qq.com",
