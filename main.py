@@ -46,16 +46,19 @@ async def main():
             message_bigerror = "邮件系统故障失败:\n" + str(ex)
             raise Exception(message_bigerror)
     except Exception as e:
-        save_to_public(html_content)
-        Mail_beiyong = Mail()
-        await Mail_beiyong.send_mail({
+        logger.error(e)
+    finally:
+        Mail_log = Mail()
+        with open(PM.path / f"{PM.today_format()}.log", "r", encoding="utf-8") as f:
+            log_content = f.read()
+        await Mail_log.send_mail({
                                     "recipient_email": "huangguo02@qq.com",
-                                    "subject": "Debug Error",
-                                    "message": str(e),
+                                    "subject": "Debug Log",
+                                    "message": log_content,
                                     }, 
                                     "plain"
                                     )
-        logger.error(e)
+        Mail_log.disconnect()
 
 
 if __name__ == "__main__":
