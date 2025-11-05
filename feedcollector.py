@@ -10,7 +10,12 @@ from yamlconfig import yamlconfig  # 假设已实现加载 feeds.yaml / config.y
 
 class FeedCollector:
     def __init__(self):
-        self.daily_quote = requests.get("https://v1.hitokoto.cn/").json().get("hitokoto") or None
+        self.header = {"User-Agent": yamlconfig().config_yaml().get("user_agent")}
+        self.daily_quote = (requests.get("https://v1.hitokoto.cn/", headers=self.header).json().get("hitokoto") 
+                            or 
+                            requests.get("https://api.codelife.cc/yiyan/random", headers=self.header).json().get("data").get("hitokoto")
+                            or
+                            "今日罢工~~~")        
         self.claims = """
                         <hr style="border:none;border-top:1px solid #ddd;margin-top:20px;margin-bottom:20px;">
                         
@@ -33,7 +38,7 @@ class FeedCollector:
         url = feed_info.get("url")
         name = feed_info.get("name", url)
         limit = feed_info.get("limit", 3)
-        headers = {"User-Agent": yamlconfig().config_yaml().get("user_agent", "Mozilla/5.0")}
+        headers = self.header
 
         try:
             async with session.get(url, headers=headers, timeout=15) as resp:
@@ -144,4 +149,4 @@ class FeedCollector:
         return "\n".join(html)
 
 if __name__ == "__main__":
-    print(FeedCollector().daily_quote)
+    print(FeedCollector().header)
