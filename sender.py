@@ -108,11 +108,12 @@ class Mail:
                 if not self.connected:
                     self.connect()
 
-        semaphore = asyncio.Semaphore(3)
+        semaphore = asyncio.Semaphore(1)
 
         async def safe_send(msg):
             async with semaphore:
                 await self.send_mail(msg)
+                await asyncio.sleep(2)
 
         await asyncio.gather(*(safe_send(m) for m in messages), return_exceptions=True)
         logger.info("📬 所有邮件任务已完成")
