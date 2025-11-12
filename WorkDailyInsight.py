@@ -16,7 +16,6 @@ async def main():
         local_html = PM.base_path.parent /"PublicEmailsHtml" / f"daily_feed_{PM.today_format()}.html"
         if local_html.exists():
             html_content = local_html.read_text(encoding="utf-8")
-            print("使用本地文件")
         else:
             collector = FeedCollector()
             all_data = await collector.collect_all()
@@ -61,5 +60,9 @@ async def main():
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    # asyncio.run(main())
+    with open(PM.path / f"{PM.today_format()}.log", "r", encoding="utf-8") as f:
+        print("-"*100)
+        print(f.read())
+        print("-"*100)
     # save_to_public("test")
