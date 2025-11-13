@@ -60,9 +60,12 @@ async def main():
 
 
 if __name__ == "__main__":
-    # asyncio.run(main())
-    with open(PM.path / f"{PM.today_format()}.log", "r", encoding="utf-8") as f:
-        print("-"*100)
-        print(f.read())
-        print("-"*100)
-    # save_to_public("test")
+    if yamlconfig().config_yaml()["debug"] == False: 
+        print("Debug Mode")
+        asyncio.run(main())
+        with open(PM.path / f"{PM.today_format()}.log", "r", encoding="utf-8") as f:
+            print("-"*100)
+            print(f.read())
+            print("-"*100)
+    else:
+        print(f"{PM.today_format()} Debug Mode On", )

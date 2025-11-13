@@ -10,5 +10,5 @@ receiver:
   email: 
     - "huangguo02@qq.com"
 
-
+debug: false
 
