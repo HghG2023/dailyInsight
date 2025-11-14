@@ -1,15 +1,30 @@
 import asyncio
+import os
+import aiofiles
 from feedcollector import FeedCollector
 from sender import Mail
 from logger import logger, PM
 from yamlconfig import yamlconfig
 
-def save_to_public(html_content):
-    filename = PM.base_path.parent /"PublicEmailsHtml" / f"daily_feed_{PM.today_format()}.html"
-    filename.parent.mkdir(parents=True, exist_ok=True)
-    with open(filename, "w", encoding="utf-8") as f:
-        f.write(html_content)
-    logger.info(f"✅ 已保存本地文件：{filename.absolute()}")
+async def save_to_public(html_content):
+    base = PM.base_path.parent / "PublicEmailsHtml"
+    real_file = base / f"daily_feed_{PM.today_format()}.html"
+    link_file = base / "daily_feed_latest.html"
+
+    base.mkdir(parents=True, exist_ok=True)
+
+    # 1. 写真实文件（异步）
+    if html_content:
+        async with aiofiles.open(real_file, "w", encoding="utf-8") as f:
+            await f.write(html_content)
+        logger.info(f"✨ 已写入：{real_file}")
+
+        # 2. 更新软链接（同步但极快，不需要异步）
+        if link_file.exists() or link_file.is_symlink():
+            link_file.unlink()
+
+        os.symlink(real_file.name, link_file)
+        logger.info(f"🔗 已更新 latest 链接 → {link_file}")
 
 async def main():
     try:
@@ -39,7 +54,7 @@ async def main():
         try:
             Mail_sender = Mail()
             await Mail_sender.send_batch(message_list)
-            save_to_public(html_content)
+            await save_to_public(html_content)
             # raise Exception("test")
         except Exception as ex:
             message_bigerror = "邮件系统故障失败:\n" + str(ex)
