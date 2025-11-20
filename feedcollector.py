@@ -10,19 +10,21 @@ from yamlconfig import yamlconfig  # 假设已实现加载 feeds.yaml / config.y
 
 class FeedCollector:
 
-    _TEST = {
-        "url": "https://blog.google/feed/",
-        "name": "Google Blog",
-        "limit": 3
+    _TEST = {"test": [{
+                        "url": "https://blog.google/rss/",
+                        "name": "Google Blog",
+                        "limit": 3
+                      }]
     }
     
-    def __init__(self):
+    def __init__(self,cfg = None):
         self.header = {"User-Agent": yamlconfig().config_yaml().get("user_agent")}
         self.daily_quote = (requests.get("https://v1.hitokoto.cn/", headers=self.header).json().get("hitokoto") 
                             or 
                             requests.get("https://api.codelife.cc/yiyan/random", headers=self.header).json().get("data").get("hitokoto")
                             or
-                            "今日罢工~~~")        
+                            "今日罢工~~~")   
+        self.feeds_cfg = yamlconfig().feeds_yaml().get("feeds", {}) if cfg is None else cfg  
         self.claims = """
                         <hr style="border:none;border-top:1px solid #ddd;margin-top:20px;margin-bottom:20px;">
                         
@@ -75,8 +77,7 @@ class FeedCollector:
 
     async def collect_all(self):
         """根据 feeds.yaml 中配置异步收集所有主题的更新"""
-        cfg = yamlconfig()
-        feeds_cfg = cfg.feeds_yaml().get("feeds", {})
+        feeds_cfg = self.feeds_cfg
         all_data = {}
 
         async with aiohttp.ClientSession() as session:
@@ -132,7 +133,7 @@ class FeedCollector:
                 if not entries:
                     html.append(
                         f"<li>无更新</li>"
-                        f"<small style='color:#666;'>({date})</small><br>"
+                        f"<small style='color:#666;'>({today})</small><br>"
                         )
 
                 for e in entries:
@@ -156,4 +157,5 @@ class FeedCollector:
         return "\n".join(html)
 
 if __name__ == "__main__":
-    print(FeedCollector().header)
+    # print(type(FeedCollector().feeds_cfg))
+    ...

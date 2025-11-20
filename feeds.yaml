@@ -1,63 +1,4 @@
 feeds:
-  global_trends:
-  - name: MIT Technology Review
-    url: https://www.technologyreview.com/feed/
-    limit: 3
-  - name: TechCrunch
-    url: https://techcrunch.com/feed/
-    limit: 3
-  - name: Wired
-    url: https://www.wired.com/feed/rss
-    limit: 3
-  - name: The Verge
-    url: https://www.theverge.com/rss/index.xml
-    limit: 3
-  ai_research:
-  - name: arXiv Machine Learning
-    url: https://arxiv.org/rss/cs.LG
-    limit: 3
-  - name: arXiv Artificial Intelligence
-    url: https://arxiv.org/rss/cs.AI
-    limit: 3
-  - name: Hacker News Frontpage
-    url: https://hnrss.org/frontpage
-    limit: 3
-  - name: NVIDIA Technical Blog
-    url: https://developer.nvidia.com/blog/feed/
-    limit: 3
-  engineering_tech:
-  - name: International Journal of Machine Tools and Manufacture
-    url: https://rss.sciencedirect.com/publication/science/08906955
-    limit: 3
-  - name: Journal of Automation and Intelligence
-    url: https://rss.sciencedirect.com/publication/science/29498554
-    limit: 3
-  - name: AI Open
-    url: https://rss.sciencedirect.com/publication/science/26666510
-    limit: 3
-  cognition_thinking:
-  - name: Farnam Street (FS Blog)
-    url: https://fs.blog/feed/
-    limit: 3
-  - name: The Marginalian
-    url: https://www.themarginalian.org/feed/
-    limit: 3
-  - name: LessWrong
-    url: https://www.lesswrong.com/feed.xml
-    limit: 3
-  - name: Aeon Essays
-    url: https://aeon.co/feed.rss
-    limit: 3
-  future_outlook:
-  - name: Futurism
-    url: https://futurism.com/feed
-    limit: 3
-  - name: Singularity Hub
-    url: https://singularityhub.com/feed/
-    limit: 3
-  - name: Next Big Future
-    url: https://www.nextbigfuture.com/feed
-    limit: 3
   chinese_focus:
   - name: 少数派 SSPAI
     url: https://sspai.com/feed
@@ -74,3 +15,71 @@ feeds:
   - name: iDaily 今日头条
     url: https://plink.anyfeeder.com/idaily/today
     limit: 3
+  - name: Google News
+    url: https://blog.google/rss/
+    limit: 3
+
+  global_trends:
+  - name: MIT Technology Review
+    url: https://www.technologyreview.com/feed/
+    limit: 3
+  - name: TechCrunch
+    url: https://techcrunch.com/feed/
+    limit: 3
+  - name: Wired
+    url: https://www.wired.com/feed/rss
+    limit: 3
+  - name: The Verge
+    url: https://www.theverge.com/rss/index.xml
+    limit: 3
+
+  ai_research:
+  - name: arXiv Machine Learning
+    url: https://arxiv.org/rss/cs.LG
+    limit: 3
+  - name: arXiv Artificial Intelligence
+    url: https://arxiv.org/rss/cs.AI
+    limit: 3
+  - name: Hacker News Frontpage
+    url: https://hnrss.org/frontpage
+    limit: 3
+  - name: NVIDIA Technical Blog
+    url: https://developer.nvidia.com/blog/feed/
+    limit: 3
+
+  engineering_tech:
+  - name: International Journal of Machine Tools and Manufacture
+    url: https://rss.sciencedirect.com/publication/science/08906955
+    limit: 3
+  - name: Journal of Automation and Intelligence
+    url: https://rss.sciencedirect.com/publication/science/29498554
+    limit: 3
+  - name: AI Open
+    url: https://rss.sciencedirect.com/publication/science/26666510
+    limit: 3
+
+  cognition_thinking:
+  - name: Farnam Street (FS Blog)
+    url: https://fs.blog/feed/
+    limit: 3
+  - name: The Marginalian
+    url: https://www.themarginalian.org/feed/
+    limit: 3
+  - name: LessWrong
+    url: https://www.lesswrong.com/feed.xml
+    limit: 3
+  - name: Aeon Essays
+    url: https://aeon.co/feed.rss
+    limit: 3
+    
+  future_outlook:
+  - name: Futurism
+    url: https://futurism.com/feed
+    limit: 3
+  - name: Singularity Hub
+    url: https://singularityhub.com/feed/
+    limit: 3
+  - name: Next Big Future
+    url: https://www.nextbigfuture.com/feed
+    limit: 3
+
