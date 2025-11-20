@@ -8,6 +8,10 @@ from logger import logger
 from timeFormat import format_for_web
 from yamlconfig import yamlconfig  # 假设已实现加载 feeds.yaml / config.yaml
 
+
+IMPORTANTDAY = datetime.strptime("2025-12-21","%Y-%m-%d")
+
+
 class FeedCollector:
 
     _TEST = {"test": [{
@@ -116,6 +120,12 @@ class FeedCollector:
         # 💡 每日格言区域（如果提供）
         if self.daily_quote:
             # html.append(f"<div class='quote'>💭 果哥偷文~ </div>")
+            TODAY = datetime.strptime(today, "%Y-%m-%d")
+
+            if TODAY < IMPORTANTDAY:
+                html.append("<style>  .quote { font-size: 16px; }  .highlight { color: #c62828; font-weight: 700; } /* 红色 + 加粗 */</style>")
+                html.append(f"""<div class="quote">  距离考研 (<span class="highlight">{IMPORTANTDAY.strftime('%m月%d日')}</span>) 还有  <span class="highlight">{(IMPORTANTDAY-TODAY).days} 天</span></div>""")
+            
             html.append(f"<div class='quote'>💭 {self.daily_quote}</div>")
 
         html.append("<hr style='border:none;border-top:2px solid #ddd;'>")
