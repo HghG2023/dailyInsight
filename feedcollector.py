@@ -9,6 +9,13 @@ from timeFormat import format_for_web
 from yamlconfig import yamlconfig  # 假设已实现加载 feeds.yaml / config.yaml
 
 class FeedCollector:
+
+    _TEST = {
+        "url": "https://blog.google/feed/",
+        "name": "Google Blog",
+        "limit": 3
+    }
+    
     def __init__(self):
         self.header = {"User-Agent": yamlconfig().config_yaml().get("user_agent")}
         self.daily_quote = (requests.get("https://v1.hitokoto.cn/", headers=self.header).json().get("hitokoto") 
@@ -107,7 +114,7 @@ class FeedCollector:
         ]
         # 💡 每日格言区域（如果提供）
         if self.daily_quote:
-            html.append(f"<div class='quote'>💭 果哥偷文~ </div>")
+            # html.append(f"<div class='quote'>💭 果哥偷文~ </div>")
             html.append(f"<div class='quote'>💭 {self.daily_quote}</div>")
 
         html.append("<hr style='border:none;border-top:2px solid #ddd;'>")

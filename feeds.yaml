@@ -26,9 +26,6 @@ feeds:
     url: https://developer.nvidia.com/blog/feed/
     limit: 3
   engineering_tech:
-  - name: Engineering-CNKI
-    url: https://rss.cnki.net/knavi/rss/GOCH?pcode=CJFD,CCJD
-    limit: 3
   - name: International Journal of Machine Tools and Manufacture
     url: https://rss.sciencedirect.com/publication/science/08906955
     limit: 3
@@ -67,9 +64,6 @@ feeds:
     limit: 3
   - name: 量子位 QbitAI
     url: https://www.qbitai.com/feed
-    limit: 3
-  - name: 阮一峰的网络日志
-    url: https://www.ruanyifeng.com/blog/atom.xml
     limit: 3
   - name: 联合早报·中国
     url: https://plink.anyfeeder.com/zaobao/realtime/china
